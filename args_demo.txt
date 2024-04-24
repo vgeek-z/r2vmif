@@ -1,0 +1,56 @@
+# 这是某次只使用了第一通道（GC）的精确度的相关配置,仅作参考
+* 当前使用的数据量大概两千多条。
+hr指标结果如下：
+0.809,0.96,0.981,0.994,0.998
+当数据量增加的时候，请适当增加batch_size，train_epoch_3tunnels等参数。
+**********************************************************************************************
+# This is a configuration where only the first channel (GC) is used, for reference only
+
+HR@K are as follows:
+0.809, 0.96, 0.981, 0.994, 0.998
+
+When the size of data increases, please appropriately increase batch_size, train_epoch_3tunnels, node_embedding_epoch, etc..
+**********************************************************************************************
+target_attribute: ct_scheme
+device: cuda:0
+ckpt_ori_path: checkpoints/
+data_path: checkpoints/node_data/data_struct.pkl
+rule_ckpt_path: checkpoints/node_vector/v4_update_Lrule2/_D64_Epo80_Neg25_Mask11_Pos111.pkl
+ThreeTunnelsModel_ckpt_path: checkpoints/nets/3tunnels_mk100_deDPCNN.pth
+ThreeTunnelsModel_pics: logs/ThreeTunnelsModel_train_loss.png
+rule_embedding_pics: logs/rule_embedding_train_loss.png
+train_record_path: train_process_record/batch_3_test/record_history_001.xlsx
+random_seed: 42
+batch_size: 64
+train_epoch_3tunnels: 12
+saved_epoch: 3
+mask_list: [1, 0, 0]
+learning_rate: 0.01
+output_dim: 64
+node_embedding_dim: 64
+node_embedding_epoch: 80
+negative_length: 25
+negative_masks: [1, 1]
+positive_fused_weight: [0.33, 0.33, 0.333]
+similiar_num: 10
+similarity_attribute_weight: 0.5
+dataencoder: DPCNN
+decision_way: fc_adapted
+nums_attribute_node: 41
+nums_therapy_node: 8
+if_extend_therapy_node: False
+if_ReCreate_data: False
+if_train_node_embedding: False
+if_train_frame: True
+if_limited_by_nodes: True
+if_extend_train_set: False
+if_extend_test_set: True
+balance_data_approach: [0]
+create_data_num: None
+data_create_rule_ratio: [0, 1, 0, 0, 1, 1, 1, 1, 1, 1]
+ratio_split_create: [0, 0, 1]
+keep_consistent_distribution: False
+compare_pre_train_picpath: baselines/compare/
+loss_type: crossen
+
+
